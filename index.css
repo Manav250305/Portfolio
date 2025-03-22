@@ -1,3 +1,7 @@
+html{
+  scroll-behavior: smooth;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,6 +9,7 @@
 }
 
 .navbar {
+  position: fixed;
   height: auto;
   width: 100%;
   margin-top: 0px;
@@ -30,6 +35,14 @@
   object-fit: contain;
 }
 
+.Logo h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+.Logo a {
+  text-decoration: none;
+  color: white;
+}
 .nav-links {
   display: flex;
   gap: 10px;
@@ -304,3 +317,4 @@ hr {
   background-color: black;
   width: 100%;
 }
+
