@@ -10,12 +10,12 @@
     <nav class="navbar">
       <div class="Logo">
         <img src="./Image.jpg" />
-        <h3>Manav</h3>
+        <a href="./index.html"><h3>Manav</h3></a>
       </div>
       <div class="nav-links">
         <h3>
-          <a href="">About</a> | <a href="">Skills</a> |
-          <a href="">Contact</a>
+          <a href="#about">About</a> | <a href="#skills">Skills</a> |
+          <a href="#contact">Contact</a>
         </h3>
       </div>
     </nav>
@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <div class="about">
+    <div class="about" id="about">
       <div class="about-content">
         <h1 class="about-title">About Me</h1>
         <div class="about-text">
@@ -61,8 +61,8 @@
       </div>
     </div>
 
-    <div class="contact">
-      <h1>CONTACT INFO</h1>
+    <div class="contact" id="contact">
+      <h1>Contact Info</h1>
       <div class="contact-box">
         <h3>Phone Number: <span>+91 9560543184</span></h3>
         <h3>Email: <span>manav.prakash2023@vitstudent.ac.in</span></h3>
@@ -82,7 +82,7 @@
       </div>
     </div>
 
-    <div class="skills">
+    <div class="skills" id="skills">
       <h1>My Skills</h1>
       <div class="skills-container">
         <div class="skill-box">HTML</div>
@@ -98,25 +98,25 @@
       </div>
     </div>
 
-    <script src="index.js"></script>
+    
   </body>
   <footer class="footer">
     <div class="footer-container">
-      <div class="footer-logo">Manav</div>
+      <div class="Logo">
+        <img src="./Image.jpg" />
+        <a href="./index.html"><h3>Manav</h3></a>
+      </div>
       <ul class="footer-links">
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <div class="footer-social">
-        <a href="#"><i class="fab fa-github"></i></a>
-        <a href="#"><i class="fab fa-linkedin"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-      </div>
+      
     </div>
     <div class="footer-bottom">
-      © 2025 Manav. All rights reserved.
+      © <span id="year"></span> Manav. All rights reserved.
     </div>
   </footer>
+  <script src="index.js"></script>
 </html>
