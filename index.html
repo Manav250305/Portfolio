@@ -46,12 +46,13 @@
       </div>
     </div>
 
+    
     <div class="about" id="about">
       <div class="about-content">
         <h1 class="about-title">About Me</h1>
         <div class="about-text">
           <p>
-            I’m currently pursuing a Bachelor’s degree in Computer Science and
+            I'm currently pursuing a Bachelor's degree in Computer Science and
             Engineering at VIT, Vellore, driven by a deep passion for coding and
             an insatiable curiosity to learn and grow. I thrive in collaborative
             and creative environments, constantly seeking opportunities to
@@ -85,20 +86,20 @@
     <div class="skills" id="skills">
       <h1>My Skills</h1>
       <div class="skills-container">
-        <div class="skill-box">HTML</div>
-        <div class="skill-box">CSS</div>
-        <div class="skill-box">JavaScript</div>
-        <div class="skill-box">React.js</div>
-        <div class="skill-box">Node.js</div>
-        <div class="skill-box">C</div>
-        <div class="skill-box">C++</div>
-        <div class="skill-box">Python</div>
-        <div class="skill-box">ExpressJS</div>
-        <div class="skill-box">MongoDB</div>
+          <div class="skill-box" data-level=" Profiency level: 3+ Years">HTML</div>
+          <div class="skill-box" data-level="Profiency level: 3+ Years">CSS</div>
+          <div class="skill-box" data-level="Profiency level: 2+ Years">JavaScript</div>
+          <div class="skill-box" data-level="Profiency level: 1.5 Years">React.js</div>
+          <div class="skill-box" data-level="Profiency level: 1.5 Years">Node.js</div>
+          <div class="skill-box" data-level="Profiency level: 4+ Years">C</div>
+          <div class="skill-box" data-level="Profiency level: 3 Years">C++</div>
+          <div class="skill-box" data-level="Profiency level: 3 Years">Python</div>
+          <div class="skill-box" data-level="Profiency level: 1.5 Years">ExpressJS</div>
+          <div class="skill-box" data-level="Profiency level: 1.5 Years">MongoDB</div>
       </div>
-    </div>
-
+  </div>
     
+    <script src="index.js"></script>
   </body>
   <footer class="footer">
     <div class="footer-container">
@@ -109,14 +110,14 @@
       <ul class="footer-links">
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      
     </div>
     <div class="footer-bottom">
       © <span id="year"></span> Manav. All rights reserved.
     </div>
   </footer>
-  <script src="index.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </html>
