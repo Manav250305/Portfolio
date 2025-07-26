@@ -16,38 +16,32 @@ const Portfolio = () => {
 
   // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('');
+  e.preventDefault();
+  setIsSubmitting(true);
+  setSubmitStatus('');
 
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
+  try {
+    // Replace 'your-backend-project-name' with your actual Vercel backend project URL
+    const response = await fetch('https://your-backend-project-name.vercel.app/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
     });
-  };
+
+    if (response.ok) {
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } else {
+      setSubmitStatus('error');
+    }
+  } catch (error) {
+    setSubmitStatus('error');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   // Scroll spy effect
   useEffect(() => {
@@ -145,11 +139,11 @@ const skills = [
       webDev: ["React", "Node.js", "HTML5", "CSS3", "Tailwind CSS"],
       databases: ["MongoDB", "SQL"],
       tools: ["Git", "GitHub", "VS Code"],
-      aiml: ["LangChain", "OpenAI API", "Machine Learning", "Natural Language Processing"]
+      aiml: ["OpenAI API", "Machine Learning", "Natural Language Processing"]
     },
     achievements: [
-      "Developed 3+ full-stack applications with modern tech stack",
-      "Strong foundation in Data Structures and Algorithms",
+      "Developed 2+ full-stack applications with modern tech stack",
+      "Good foundation in Data Structures and Algorithms",
       "Active GitHub contributor with multiple repositories",
       "Passionate about AI/ML and emerging technologies"
     ],
