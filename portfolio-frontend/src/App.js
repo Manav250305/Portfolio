@@ -442,10 +442,10 @@ const skills = [
               <div className="mt-8">
                 <p className="font-semibold mb-4">Follow Me</p>
                 <div className="flex gap-4">
-                  <a href="#" className="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors">
+                  <a href="https://github.com/Manav250305" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors">
                     <Github className="w-5 h-5" />
                   </a>
-                  <a href="#" className="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors">
+                  <a href="https://www.linkedin.com/in/manav-prakash-5b0a7328a/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors">
                     <Linkedin className="w-5 h-5" />
                   </a>
                 </div>
