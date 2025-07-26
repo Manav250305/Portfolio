@@ -14,34 +14,43 @@ const Portfolio = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('');
 
+  // Handle input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
   // Handle form submission
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setIsSubmitting(true);
-  setSubmitStatus('');
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('');
 
-  try {
-    // Replace 'your-backend-project-name' with your actual Vercel backend project URL
-    const response = await fetch('https://your-backend-project-name.vercel.app/api/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData)
-    });
+    try {
+      // Replace 'your-backend-project-name' with your actual Vercel backend project URL
+      const response = await fetch('https://your-backend-project-name.vercel.app/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
 
-    if (response.ok) {
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    } else {
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
       setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
     }
-  } catch (error) {
-    setSubmitStatus('error');
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+  };
 
   // Scroll spy effect
   useEffect(() => {
