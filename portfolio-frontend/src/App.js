@@ -31,7 +31,7 @@ const Portfolio = () => {
 
     try {
       // Replace 'your-backend-project-name' with your actual Vercel backend project URL
-      const response = await fetch('https://your-backend-project-name.vercel.app/api/contact', {
+      const response = await fetch('https://portfolio-backend-c2nnc0yg8-manavs-projects-4ba91fdb.vercel.app/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
