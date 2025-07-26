@@ -1,32 +1,24 @@
 {
   "name": "portfolio-backend",
   "version": "1.0.0",
-  "description": "Backend API for Manav's portfolio website with contact form handling",
-  "main": "server.js",
+  "description": "Backend API for Manav's portfolio website using Vercel API routes",
   "scripts": {
-    "start": "node server.js",
-    "dev": "NODE_NO_WARNINGS=1 nodemon server.js",
-    "dev:verbose": "nodemon server.js",
+    "dev": "vercel dev",
     "test": "jest",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
   "keywords": [
     "portfolio",
-    "contact-form",
-    "nodejs",
-    "express",
-    "mongodb"
+    "vercel-api",
+    "mongodb",
+    "nodemailer"
   ],
   "author": "Manav",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.19.2",
     "mongoose": "^8.3.0",
-    "cors": "^2.8.5",
     "nodemailer": "^6.9.13",
-    "express-rate-limit": "^7.2.0",
-    "helmet": "^7.1.0",
     "validator": "^13.12.0",
     "dotenv": "^16.4.5"
   },
