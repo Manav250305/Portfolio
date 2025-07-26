@@ -1,0 +1,46 @@
+{
+  "name": "portfolio-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Manav's portfolio website with contact form handling",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "NODE_NO_WARNINGS=1 nodemon server.js",
+    "dev:verbose": "nodemon server.js",
+    "test": "jest",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "keywords": [
+    "portfolio",
+    "contact-form",
+    "nodejs",
+    "express",
+    "mongodb"
+  ],
+  "author": "Manav",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.3.0",
+    "cors": "^2.8.5",
+    "nodemailer": "^6.9.13",
+    "express-rate-limit": "^7.2.0",
+    "helmet": "^7.1.0",
+    "validator": "^13.12.0",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "eslint": "^8.56.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manav250305/portfolio-backend.git"
+  }
+}
