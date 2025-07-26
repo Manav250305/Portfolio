@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Typewriter } from 'react-simple-typewriter';
-import { Mail, Phone, MapPin, Github, Linkedin, Download, Send, Code, Database, Globe, Smartphone, ArrowRight, ExternalLink, Star, BookOpen, Award, Users } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Download, Send, Code, Database, Globe, Smartphone, ArrowRight, ExternalLink, Star, BookOpen, Award, Users, GraduationCap, Briefcase, Calendar } from 'lucide-react';
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -52,7 +52,7 @@ const Portfolio = () => {
   // Scroll spy effect
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+      const sections = ['home', 'about', 'skills', 'resume', 'projects', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -95,6 +95,97 @@ const skills = [
   { name: 'LangChain', level: 70, icon: Code },
   { name: 'OpenAI API', level: 80, icon: Code }
 ];
+  const resumeData = {
+    education: [
+      {
+        institution: "Vellore Institute of Technology (VIT)",
+        degree: "Bachelor of Technology in Computer Science and Engineering",
+        location: "Vellore, Tamil Nadu",
+        duration: "2023 - 2027",
+        cgpa: "9.67/10",
+        relevant: ["Data Structures & Algorithms", "Machine Learning", "Web Development", "Database Management"]
+      }
+    ],
+    experience: [
+      {
+        company: "Personal Projects",
+        position: "Full Stack Developer",
+        duration: "2023 - Present",
+        location: "VIT Vellore",
+        responsibilities: [
+          "Developed multiple full-stack applications using React, Node.js, and MongoDB",
+          "Implemented AI-powered features using LangChain and OpenAI API",
+          "Built responsive and user-friendly interfaces with modern design principles",
+          "Worked with various APIs and integrated third-party services"
+        ]
+      }
+    ],
+    projects: [
+      {
+        name: "SmartClaims AI",
+        tech: "LangChain, Node.js, MongoDB, OpenAI API",
+        description: "LLM-powered insurance document analyzer with clause-based reasoning and automated claim processing.",
+        highlights: ["Automated document analysis", "Clause-based reasoning", "95% accuracy in claim validation"]
+      },
+      {
+        name: "Voice-Powered Shopping Assistant",
+        tech: "React, SpeechRecognition API, Node.js",
+        description: "Conversational shopping interface allowing voice commands for product search and cart management.",
+        highlights: ["Voice command integration", "Real-time speech processing", "Intuitive user experience"]
+      },
+      {
+        name: "Smart Classroom Comfort Monitor",
+        tech: "ESP32, Python, Machine Learning",
+        description: "IoT and ML solution providing real-time environmental feedback for classroom comfort optimization.",
+        highlights: ["IoT sensor integration", "Real-time monitoring", "ML-based predictions"]
+      }
+    ],
+    skills: {
+      programming: ["C", "C++", "Java", "Python", "JavaScript (ES6+)"],
+      webDev: ["React", "Node.js", "HTML5", "CSS3", "Tailwind CSS"],
+      databases: ["MongoDB", "SQL"],
+      tools: ["Git", "GitHub", "VS Code"],
+      aiml: ["LangChain", "OpenAI API", "Machine Learning", "Natural Language Processing"]
+    },
+    achievements: [
+      "Developed 3+ full-stack applications with modern tech stack",
+      "Strong foundation in Data Structures and Algorithms",
+      "Active GitHub contributor with multiple repositories",
+      "Passionate about AI/ML and emerging technologies"
+    ],
+    certifications: [
+      {
+        title: "Oracle Cloud Infrastructure (OCI)",
+        items: [
+          "Generative AI Professional – 2025",
+          "AI Foundations Associate"
+        ]
+      },
+      {
+        title: "DeepLearning.AI & Stanford CPD",
+        items: [
+          "Advanced Learning Algorithms",
+          "Supervised Machine Learning: Regression & Classification",
+          "Machine Learning"
+        ]
+      },
+      {
+        title: "Google Cloud",
+        items: ["Introduction to Generative AI Learning Path"]
+      },
+      {
+        title: "IBM",
+        items: [
+          "AI for Everyone", 
+          "Introduction to HTML, CSS, & JavaScript",
+          "Introduction to Software Engineering,Getting Started with Git and GitHub"
+        ]
+      }
+    ],
+    notable: [
+      "100% Attendance at VIT – Demonstrates strong commitment, discipline, and consistency throughout my academic journey."
+    ]
+  };
 
   const projects = [
   {
@@ -135,7 +226,7 @@ const skills = [
             {/* Desktop Navigation */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                {['Home', 'About', 'Skills', 'Projects', 'Contact'].map((item) => (
+                {['Home', 'About', 'Skills', 'Resume', 'Projects', 'Contact'].map((item) => (
                   <button
                     key={item}
                     onClick={() => scrollToSection(item.toLowerCase())}
@@ -172,7 +263,7 @@ const skills = [
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-800">
-              {['Home', 'About', 'Skills', 'Projects', 'Contact'].map((item) => (
+              {['Home', 'About', 'Skills', 'Resume', 'Projects', 'Contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
@@ -341,6 +432,214 @@ const skills = [
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+       {/* Resume Section */}
+      <section id="resume" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Resume</h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-purple-500 mx-auto" />
+            <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
+              A comprehensive overview of my education, experience, and achievements
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Left Column */}
+            <div className="space-y-8">
+              {/* Education */}
+              <div>
+                <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                  <GraduationCap className="w-6 h-6 text-blue-400" />
+                  Education
+                </h3>
+                {resumeData.education.map((edu, index) => (
+                  <div key={index} className="bg-gray-900/50 p-6 rounded-lg border border-gray-700">
+                    <h4 className="text-xl font-semibold text-blue-400 mb-2">{edu.institution}</h4>
+                    <p className="text-lg font-medium mb-2">{edu.degree}</p>
+                    <div className="flex items-center gap-4 text-gray-400 mb-2">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        {edu.duration}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <MapPin className="w-4 h-4" />
+                        {edu.location}
+                      </span>
+                    </div>
+                    <p className="text-gray-300 mb-4">CGPA: {edu.cgpa}</p>
+                    <div>
+                      <p className="font-medium mb-2">Relevant Coursework:</p>
+                      <div className="flex flex-wrap gap-2">
+                        {edu.relevant.map((course) => (
+                          <span key={course} className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30">
+                            {course}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Experience */}
+              <div>
+                <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                  <Briefcase className="w-6 h-6 text-blue-400" />
+                  Experience
+                </h3>
+                {resumeData.experience.map((exp, index) => (
+                  <div key={index} className="bg-gray-900/50 p-6 rounded-lg border border-gray-700">
+                    <h4 className="text-xl font-semibold text-blue-400 mb-2">{exp.position}</h4>
+                    <p className="text-lg font-medium mb-2">{exp.company}</p>
+                    <div className="flex items-center gap-4 text-gray-400 mb-4">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        {exp.duration}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <MapPin className="w-4 h-4" />
+                        {exp.location}
+                      </span>
+                    </div>
+                    <ul className="space-y-2">
+                      {exp.responsibilities.map((resp, idx) => (
+                        <li key={idx} className="text-gray-300 flex items-start gap-2">
+                          <span className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0" />
+                          {resp}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+
+              {/* Notable Achievements */}
+              <div>
+                <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                  <Star className="w-6 h-6 text-blue-400" />
+                  Notable Achievement
+                </h3>
+                <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700">
+                  <ul className="space-y-3">
+                    {resumeData.notable.map((note, index) => (
+                      <li key={index} className="text-gray-300 flex items-start gap-3">
+                        <Star className="w-4 h-4 text-blue-400 mt-1 flex-shrink-0" />
+                        {note}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column */}
+            <div className="space-y-8">
+              
+
+              {/* Technical Skills */}
+              <div>
+                <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                  <Code className="w-6 h-6 text-blue-400" />
+                  Technical Skills
+                </h3>
+                <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700 space-y-4">
+                  <div>
+                    <h5 className="font-semibold text-blue-400 mb-2">Programming Languages</h5>
+                    <div className="flex flex-wrap gap-2">
+                      {resumeData.skills.programming.map((skill) => (
+                        <span key={skill} className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h5 className="font-semibold text-blue-400 mb-2">Web Development</h5>
+                    <div className="flex flex-wrap gap-2">
+                      {resumeData.skills.webDev.map((skill) => (
+                        <span key={skill} className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h5 className="font-semibold text-blue-400 mb-2">Databases & Tools</h5>
+                    <div className="flex flex-wrap gap-2">
+                      {[...resumeData.skills.databases, ...resumeData.skills.tools].map((skill) => (
+                        <span key={skill} className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h5 className="font-semibold text-blue-400 mb-2">AI/ML & Emerging Tech</h5>
+                    <div className="flex flex-wrap gap-2">
+                      {resumeData.skills.aiml.map((skill) => (
+                        <span key={skill} className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Achievements */}
+              <div>
+                <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                  <Award className="w-6 h-6 text-blue-400" />
+                  Achievements
+                </h3>
+                <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700">
+                  <ul className="space-y-3">
+                    {resumeData.achievements.map((achievement, index) => (
+                      <li key={index} className="text-gray-300 flex items-start gap-3">
+                        <Star className="w-4 h-4 text-blue-400 mt-1 flex-shrink-0" />
+                        {achievement}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Certifications */}
+              <div>
+                <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                  <BookOpen className="w-6 h-6 text-blue-400" />
+                  Certifications
+                </h3>
+                <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700 space-y-4">
+                  {resumeData.certifications.map((cert, index) => (
+                    <div key={index}>
+                      <h4 className="font-semibold text-blue-400 mb-2">{cert.title}</h4>
+                      <ul className="list-disc list-inside text-gray-300 space-y-1">
+                        {cert.items.map((item, i) => (
+                          <li key={i}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Download Resume Button */}
+          <div className="text-center mt-12">
+            <a
+              href="https://drive.google.com/file/d/11al7h_JezqgtqCw3cpvhT6RdRX4JZzys/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mx-auto w-fit px-6 py-2 text-sm bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-lg font-medium transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2"
+            >
+              View Resume <Download className="w-5 h-5" />
+            </a>
           </div>
         </div>
       </section>
