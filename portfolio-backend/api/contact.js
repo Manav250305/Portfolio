@@ -2,17 +2,24 @@
 import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
-  // Set comprehensive CORS headers FIRST
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Authorization, Cache-Control');
-  res.setHeader('Access-Control-Allow-Credentials', 'false');
-  res.setHeader('Access-Control-Max-Age', '86400');
+  // Set CORS headers for all requests (including OPTIONS)
+  const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type, Accept, Authorization, Cache-Control',
+    'Access-Control-Allow-Credentials': 'false',
+    'Access-Control-Max-Age': '86400'
+  };
+
+  // Apply CORS headers
+  Object.entries(corsHeaders).forEach(([key, value]) => {
+    res.setHeader(key, value);
+  });
 
   console.log('Request method:', req.method);
   console.log('Request headers:', req.headers);
 
-  // Handle CORS preflight - MUST return 200
+  // Handle CORS preflight - MUST return 200 with proper headers
   if (req.method === 'OPTIONS') {
     console.log('Handling OPTIONS preflight request');
     res.status(200).end();
