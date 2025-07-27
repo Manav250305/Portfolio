@@ -2,21 +2,24 @@
 import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
-  // Set CORS headers first
+  // Set comprehensive CORS headers FIRST
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Authorization, Cache-Control');
+  res.setHeader('Access-Control-Allow-Credentials', 'false');
+  res.setHeader('Access-Control-Max-Age', '86400');
 
   console.log('Request method:', req.method);
-  console.log('Request body:', req.body);
+  console.log('Request headers:', req.headers);
 
-  // Handle CORS preflight
+  // Handle CORS preflight - MUST return 200
   if (req.method === 'OPTIONS') {
-    console.log('Handling OPTIONS request');
-    return res.status(200).end();
+    console.log('Handling OPTIONS preflight request');
+    res.status(200).end();
+    return;
   }
 
-  // Only allow POST requests
+  // Only allow POST requests for actual functionality
   if (req.method !== 'POST') {
     console.log('Method not allowed:', req.method);
     return res.status(405).json({ error: `Method ${req.method} not allowed. Use POST.` });
@@ -24,27 +27,26 @@ export default async function handler(req, res) {
 
   try {
     console.log('Processing POST request...');
+    console.log('Request body:', req.body);
 
     // Check environment variables
-    console.log('Environment check:', {
+    const envCheck = {
       hasEmailUser: !!process.env.EMAIL_USER,
       hasEmailPass: !!process.env.EMAIL_PASS,
       hasNotificationEmail: !!process.env.NOTIFICATION_EMAIL,
       emailUser: process.env.EMAIL_USER || 'undefined'
-    });
+    };
+    console.log('Environment check:', envCheck);
 
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
       console.error('Missing email configuration');
       return res.status(500).json({ 
         error: 'Email service not configured',
-        debug: {
-          hasEmailUser: !!process.env.EMAIL_USER,
-          hasEmailPass: !!process.env.EMAIL_PASS
-        }
+        debug: envCheck
       });
     }
 
-    const { name, email, subject, message } = req.body;
+    const { name, email, subject, message } = req.body || {};
 
     // Validate required fields
     if (!name || !email || !subject || !message) {
@@ -67,9 +69,15 @@ export default async function handler(req, res) {
     // Configure nodemailer transporter
     const transporter = nodemailer.createTransporter({
       service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
+      },
+      tls: {
+        rejectUnauthorized: false
       }
     });
 
@@ -161,7 +169,7 @@ export default async function handler(req, res) {
     console.log('Email results:', emailResults.map((result, index) => ({
       email: index === 0 ? 'notification' : 'auto-reply',
       status: result.status,
-      error: result.status === 'rejected' ? result.reason.message : null
+      error: result.status === 'rejected' ? result.reason?.message : null
     })));
 
     // Check if at least the notification email was sent
@@ -169,7 +177,7 @@ export default async function handler(req, res) {
       console.error('Failed to send notification email:', emailResults[0].reason);
       return res.status(500).json({ 
         error: 'Failed to send notification email',
-        details: emailResults[0].reason.message
+        details: emailResults[0].reason?.message
       });
     }
 
