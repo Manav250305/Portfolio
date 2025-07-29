@@ -13,7 +13,7 @@ This is my personal developer portfolio website built to showcase my skills, pro
 ## 🛠️ Built With
 
 - React / Tailwind / Node.JS
-- **Hosted on Vercel
+- Hosted on Vercel
 ## 🔗 Live Site
 
 You can view the portfolio here:  
