@@ -13,6 +13,31 @@ const Portfolio = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('');
+  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+
+  const projects = [
+  {
+    title: 'TenderForge - AI-Powered Government Tender Marketplace',
+    description: 'Full-Stack SaaS Platform that aggregates government tenders and generates AI-powered proposals, reducing bid preparation time by 90%.',
+    tech: ['React.js', 'Node.js', 'OpenAI API', 'Firebase', 'Stripe'],
+    github: 'https://github.com/Manav250305/Tender-Forge',
+    image: '/TenderForge.png'
+  },
+  {
+    title: 'SmartClaims AI',
+    description: 'LLM-powered insurance document analyzer with clause-based reasoning.',
+    tech: ['LangChain', 'Node.js', 'MongoDB', 'OpenAI'],
+    github: 'https://github.com/Manav250305/SmartClaims-AI',
+    image: '/SmartClaims.png'
+  },
+  {
+  title: 'Voice-Powered Shopping Assistant',
+  description: 'Conversational shopping UI that allows users to search and add products to cart using voice commands.',
+  tech: ['React', 'SpeechRecognition API', 'Node.js'],
+  github: 'https://github.com/Manav250305/shopping-ai',
+  image: 'Shopping-AI.png'
+  }
+];
 
   // Handle input changes
   const handleInputChange = (e) => {
@@ -30,8 +55,8 @@ const Portfolio = () => {
     setSubmitStatus('');
 
     try {
-      // Replace 'your-backend-project-name' with your actual Vercel backend project URL
-      const response = await fetch('https://portfolio-backend-c2nnc0yg8-manavs-projects-4ba91fdb.vercel.app/api/contact', {
+      // Updated to use the correct deployed backend URL
+      const response = await fetch('https://portfolio-backend-api-zeta.vercel.app/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -74,6 +99,15 @@ const Portfolio = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Auto-scroll projects carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentProjectIndex((prevIndex) => (prevIndex + 1) % projects.length);
+    }, 4000); // Change project every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [projects.length]);
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -83,20 +117,24 @@ const Portfolio = () => {
   };
 
 const skills = [
-  { name: 'JavaScript (ES6+)', level: 75, icon: Code },
-  { name: 'React', level: 85, icon: Globe },
-  { name: 'Node.js', level: 70, icon: Database },
-  { name: 'Python', level: 85, icon: Code },
+  { name: 'JavaScript (ES6+)', level: 85, icon: Code },
+  { name: 'React.js', level: 90, icon: Globe },
+  { name: 'Node.js', level: 80, icon: Database },
+  { name: 'Python', level: 90, icon: Code },
   { name: 'Java', level: 75, icon: Code },
   { name: 'C', level: 90, icon: Code },
   { name: 'C++', level: 90, icon: Code },
-  { name: 'MongoDB', level: 65, icon: Database },
-  { name: 'SQL', level: 60, icon: Database },
+  { name: 'MongoDB', level: 70, icon: Database },
+  { name: 'Firebase', level: 75, icon: Database },
+  { name: 'SQL', level: 65, icon: Database },
   { name: 'HTML5 & CSS3', level: 95, icon: Globe },
-  { name: 'Tailwind CSS', level: 65, icon: Globe },
+  { name: 'Tailwind CSS', level: 70, icon: Globe },
   { name: 'Git & GitHub', level: 90, icon: Code },
-  { name: 'LangChain', level: 70, icon: Code },
-  { name: 'OpenAI API', level: 80, icon: Code }
+  { name: 'OpenAI API', level: 85, icon: Code },
+  { name: 'LangChain', level: 75, icon: Code },
+  { name: 'Machine Learning', level: 80, icon: Code },
+  { name: 'Stripe Integration', level: 70, icon: Code },
+  { name: 'JWT Authentication', level: 75, icon: Code }
 ];
   const resumeData = {
     education: [
@@ -110,6 +148,18 @@ const skills = [
       }
     ],
     experience: [
+      {
+        company: "Civilytix",
+        position: "AI/ML Intern",
+        duration: "Aug 2025 - Present",
+        location: "Tamil Nadu, India (Remote)",
+        responsibilities: [
+          "Building lightweight AI models for in-car applications to detect road quality issues",
+          "Optimizing models for real-time deployment on low-spec automotive hardware",
+          "Contributing to scalable data pipelines that share road quality metrics with centralized systems",
+          "Developing smarter mobility insights through advanced machine learning techniques"
+        ]
+      },
       {
         company: "Personal Projects",
         position: "Full Stack Developer",
@@ -125,6 +175,12 @@ const skills = [
     ],
     projects: [
       {
+        name: "TenderForge - AI-Powered Government Tender Marketplace",
+        tech: "React.js, Node.js, OpenAI API, Firebase, Stripe",
+        description: "Full-Stack SaaS Platform that aggregates government tenders from USA, UK, Canada & Australia and generates AI-powered proposals, reducing bid preparation time by 90%.",
+        highlights: ["Real-time tender discovery across 4 government APIs", "AI proposal generation with PDF download", "Secure JWT authentication & Stripe payment integration", "Vector embeddings for intelligent tender matching"]
+      },
+      {
         name: "SmartClaims AI",
         tech: "LangChain, Node.js, MongoDB, OpenAI API",
         description: "LLM-powered insurance document analyzer with clause-based reasoning and automated claim processing.",
@@ -135,26 +191,21 @@ const skills = [
         tech: "React, SpeechRecognition API, Node.js",
         description: "Conversational shopping interface allowing voice commands for product search and cart management.",
         highlights: ["Voice command integration", "Real-time speech processing", "Intuitive user experience"]
-      },
-      {
-        name: "Smart Classroom Comfort Monitor",
-        tech: "ESP32, Python, Machine Learning",
-        description: "IoT and ML solution providing real-time environmental feedback for classroom comfort optimization.",
-        highlights: ["IoT sensor integration", "Real-time monitoring", "ML-based predictions"]
       }
     ],
     skills: {
       programming: ["C", "C++", "Java", "Python", "JavaScript (ES6+)"],
-      webDev: ["React", "Node.js", "HTML5", "CSS3", "Tailwind CSS"],
-      databases: ["MongoDB", "SQL"],
-      tools: ["Git", "GitHub", "VS Code"],
-      aiml: ["OpenAI API", "Machine Learning", "Natural Language Processing"]
+      webDev: ["React.js", "Node.js", "HTML5", "CSS3", "Tailwind CSS", "Express.js"],
+      databases: ["MongoDB", "Firebase Firestore", "SQL"],
+      tools: ["Git", "GitHub", "VS Code", "Vercel", "Stripe", "JWT"],
+      aiml: ["OpenAI API", "Machine Learning", "Natural Language Processing", "LangChain", "Vector Embeddings", "Real-time AI Models"]
     },
     achievements: [
-      "Developed 2+ full-stack applications with modern tech stack",
-      "Good foundation in Data Structures and Algorithms",
-      "Active GitHub contributor with multiple repositories",
-      "Passionate about AI/ML and emerging technologies"
+      "Currently working as AI/ML Intern at Civilytix, building real-time AI models for automotive applications",
+      "Developed 4+ full-stack applications including a SaaS platform that reduces bid preparation time by 90%",
+      "Built production-ready applications with 100+ users and integrated multiple APIs",
+      "Strong foundation in AI/ML with hands-on experience in model optimization for low-spec hardware",
+      "Active GitHub contributor with multiple repositories and open-source projects"
     ],
     certifications: [
       {
@@ -189,30 +240,6 @@ const skills = [
       "100% Attendance at VIT – Demonstrates strong commitment, discipline, and consistency throughout my academic journey."
     ]
   };
-
-  const projects = [
-  {
-    title: 'SmartClaims AI',
-    description: 'LLM-powered insurance document analyzer with clause-based reasoning.',
-    tech: ['LangChain', 'Node.js', 'MongoDB', 'OpenAI'],
-    github: 'https://github.com/Manav250305/SmartClaims-AI',
-    image: '/SmartClaims.png'
-  },
-  {
-  title: 'Voice-Powered Shopping Assistant',
-  description: 'Conversational shopping UI that allows users to search and add products to cart using voice commands.',
-  tech: ['React', 'SpeechRecognition API', 'Node.js'],
-  github: 'https://github.com/Manav250305/shopping-ai',
-  image: 'Shopping-AI.png'
-  },
-  {
-    title: 'Smart Classroom Comfort Monitor',
-    description: 'IoT + ML solution for real-time classroom environmental feedback.',
-    tech: ['ESP32', 'Python', 'Regression'],
-    github: 'https://github.com/Manav250305/Smart-Classroom-Comfort',
-    image: '/comfort.png'
-  }
-];
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
@@ -319,12 +346,12 @@ const skills = [
                 />
               </span>
             </p>
-            <p className="text-xl sm:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Computer Science & Engineering Student at VIT Vellore
+            <p className="text-xl sm:text-2xl text-gray-300 mb-4 max-w-3xl mx-auto">
+              AI/ML Intern at Civilytix | CSE Student at VIT Vellore
             </p>
             <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-              Passionate about coding, learning, and building innovative solutions. 
-              Always eager to collaborate and grow in the world of technology.
+              Building lightweight AI models for real-time applications and developing full-stack SaaS platforms. 
+              Passionate about machine learning, web development, and creating innovative solutions that make a real impact.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
@@ -356,15 +383,15 @@ const skills = [
             <div>
               <h3 className="text-2xl font-bold mb-6 text-blue-400">A Bit About Me</h3>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                Hi there! I'm Manav, and I'm currently on a journey toward earning my Bachelor's degree in 
-                Computer Science and Engineering at VIT, Vellore. I have a deep passion for coding and a 
-                strong desire to learn and grow in this field.
+                Hi there! I'm Manav, currently working as an AI/ML Intern at Civilytix where I build lightweight 
+                AI models for in-car applications and optimize them for real-time deployment on automotive hardware. 
+                I'm also pursuing my Bachelor's degree in Computer Science and Engineering at VIT, Vellore.
               </p>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                I believe that collaboration and creativity are key in technology, and I'm always eager to 
-                find ways to contribute while learning from others. I'm excited about opportunities in 
-                programming, and I'm open to internships, research, and projects where I can help make a 
-                difference and continue to develop my skills.
+                I specialize in full-stack development and machine learning, having built production-ready applications 
+                including TenderForge - a SaaS platform that reduces government tender bid preparation time by 90%. 
+                I'm passionate about creating innovative solutions that solve real-world problems and always eager to 
+                collaborate on projects that make a meaningful impact.
               </p>
               
               <div className="grid grid-cols-2 gap-4 mt-8">
@@ -653,43 +680,92 @@ const skills = [
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">Featured Projects</h2>
             <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-purple-500 mx-auto" />
+            <p className="text-gray-400 mt-6">Automatically scrolling through my latest work</p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <div key={index} className="bg-gray-900/50 rounded-lg overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 group">
-                <div className="aspect-video bg-gray-800 overflow-hidden">
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-blue-400 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-400 mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.map((tech) => (
-                      <span key={tech} className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30">
-                        {tech}
-                      </span>
-                    ))}
+          {/* Auto-scrolling carousel */}
+          <div className="relative overflow-hidden">
+            <div 
+              className="flex transition-transform duration-1000 ease-in-out"
+              style={{ transform: `translateX(-${currentProjectIndex * 100}%)` }}
+            >
+              {projects.map((project, index) => (
+                <div key={index} className="w-full flex-shrink-0 px-4">
+                  <div className="max-w-4xl mx-auto bg-gray-900/50 rounded-lg overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 group">
+                    <div className="grid md:grid-cols-2 gap-0">
+                      {/* Project Image */}
+                      <div className="aspect-video md:aspect-square bg-gray-800 overflow-hidden">
+                        <img 
+                          src={project.image} 
+                          alt={project.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                      
+                      {/* Project Details */}
+                      <div className="p-8 flex flex-col justify-center">
+                        <h3 className="text-2xl font-bold mb-4 group-hover:text-blue-400 transition-colors">
+                          {project.title}
+                        </h3>
+                        <p className="text-gray-400 mb-6 text-lg leading-relaxed">{project.description}</p>
+                        
+                        {/* Tech Stack */}
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {project.tech.map((tech) => (
+                            <span key={tech} className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                        
+                        {/* Links */}
+                        <div className="flex gap-4">
+                          <a 
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105"
+                          >
+                            <Github className="w-4 h-4" />
+                            View Code
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex gap-4">
-                    <a 
-                      href={project.github}
-                      className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-                    >
-                      <Github className="w-4 h-4" />
-                      Code
-                    </a>
-                
-                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            
+            {/* Progress Indicators */}
+            <div className="flex justify-center mt-8 space-x-2">
+              {projects.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentProjectIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentProjectIndex 
+                      ? 'bg-blue-500 scale-125' 
+                      : 'bg-gray-600 hover:bg-gray-500'
+                  }`}
+                />
+              ))}
+            </div>
+            
+            {/* Navigation Arrows */}
+            <button
+              onClick={() => setCurrentProjectIndex((prev) => (prev - 1 + projects.length) % projects.length)}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-gray-800/80 hover:bg-gray-700 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+            >
+              <ArrowRight className="w-6 h-6 rotate-180" />
+            </button>
+            
+            <button
+              onClick={() => setCurrentProjectIndex((prev) => (prev + 1) % projects.length)}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-gray-800/80 hover:bg-gray-700 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+            >
+              <ArrowRight className="w-6 h-6" />
+            </button>
           </div>
         </div>
       </section>
@@ -747,7 +823,7 @@ const skills = [
                   <a href="https://github.com/Manav250305" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors">
                     <Github className="w-5 h-5" />
                   </a>
-                  <a href="https://www.linkedin.com/in/manav-prakash-5b0a7328a/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors">
+                  <a href="https://www.linkedin.com/in/manavprakash25/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors">
                     <Linkedin className="w-5 h-5" />
                   </a>
                 </div>
